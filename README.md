@@ -1,4 +1,4 @@
-# ResumeAI
+# ResumeAIBuildYourResume
 
 **AI Interview Engine** — Turn your resume into interview questions before you apply.
 
