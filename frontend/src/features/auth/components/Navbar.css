@@ -1,0 +1,29 @@
+/* src/components/Navbar.css */
+.navbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 6vw;
+  background: rgba(253, 245, 223, 0.88);
+  backdrop-filter: blur(14px);
+  border-bottom: 1.5px solid rgba(94, 190, 196, 0.18);
+}
+
+.nav-logo {
+  font-family: var(--heading);
+  font-weight: 900;
+  font-size: 1.55rem;
+  color: var(--dark);
+  letter-spacing: -0.5px;
+  text-decoration: none;
+}
+.nav-logo span { color: var(--pink); }
+
+.nav-actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}

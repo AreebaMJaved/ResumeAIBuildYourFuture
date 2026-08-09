@@ -1,0 +1,56 @@
+/* src/pages/Signup.css */
+
+/* Password strength */
+.strength-wrap {
+  margin-top: 8px;
+}
+.strength-bar {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 5px;
+}
+.strength-seg {
+  flex: 1;
+  height: 4px;
+  border-radius: 99px;
+  background: #e0e0e0;
+  transition: background 0.3s;
+}
+.seg-weak   { background: #ff6b6b; }
+.seg-fair   { background: #ffd93d; }
+.seg-good   { background: var(--teal); }
+.seg-strong { background: #6bcb77; }
+
+.strength-label {
+  font-size: 0.72rem;
+  color: #aaa;
+}
+.strength-label strong { color: var(--dark); }
+
+/* Terms row */
+.terms-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+.terms-check {
+  margin-top: 3px;
+  accent-color: var(--teal);
+  width: 15px;
+  height: 15px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.terms-label {
+  font-size: 0.8rem;
+  color: #666;
+  cursor: pointer;
+  line-height: 1.6;
+}
+.terms-link {
+  color: var(--teal);
+  font-weight: 700;
+  text-decoration: none;
+}
+.terms-link:hover { text-decoration: underline; }

@@ -1,0 +1,25 @@
+/* src/components/Toast.css */
+.toast {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: var(--dark);
+  color: #fff;
+  padding: 14px 22px;
+  border-radius: 14px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+  z-index: 9000;
+  animation: toastIn 0.4s cubic-bezier(.22, 1, .36, 1);
+}
+
+.toast-icon { font-size: 1.1rem; }
+
+@keyframes toastIn {
+  from { transform: translateX(120px); opacity: 0; }
+  to   { transform: translateX(0);     opacity: 1; }
+}
