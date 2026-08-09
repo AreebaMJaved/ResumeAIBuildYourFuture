@@ -1,6 +1,5 @@
 const { GoogleGenAI } = require("@google/genai");
 const { z } = require("zod");
-const puppeteer = require("puppeteer");
 
 const ai = new GoogleGenAI({
   apiKey: process.env.GOOGLE_GENAI_API_KEY,
@@ -219,21 +218,37 @@ ${jobDescription}
 // ==========================
 
 async function generatePdfFromHtml(htmlContent) {
+  const { default: puppeteer } = await import("puppeteer-core");
+  const { default: chromium } = await import("@sparticuz/chromium");
+
   const browser = await puppeteer.launch({
-    args: ["--no-sandbox", "--disable-setuid-sandbox"],
+    args: chromium.args,
+    defaultViewport: chromium.defaultViewport,
+    executablePath: await chromium.executablePath(),
+    headless: true,
   });
 
-  const page = await browser.newPage();
+  try {
+    const page = await browser.newPage();
 
-  await page.setContent(htmlContent, { waitUntil: "networkidle0" });
+    await page.setContent(htmlContent, {
+      waitUntil: "networkidle0",
+    });
 
-  const pdfBuffer = await page.pdf({
-    format: "A4",
-    margin: { top: "20mm", bottom: "20mm", left: "15mm", right: "15mm" },
-  });
+    const pdfBuffer = await page.pdf({
+      format: "A4",
+      margin: {
+        top: "20mm",
+        bottom: "20mm",
+        left: "15mm",
+        right: "15mm",
+      },
+    });
 
-  await browser.close();
-  return pdfBuffer;
+    return pdfBuffer;
+  } finally {
+    await browser.close();
+  }
 }
 
 // ==========================
