@@ -13,9 +13,10 @@ const app = express();
 /* ---------------- MIDDLEWARES ---------------- */
 
 // CORS
+
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: process.env.CLIENT_URL,
     credentials: true,
   })
 );
@@ -27,10 +28,15 @@ app.use(cookieParser());
 /* ---------------- SESSION (MUST BE BEFORE PASSPORT) ---------------- */
 app.use(
   session({
-    secret: "secret",
-    resave: false,
-    saveUninitialized: false,
-  })
+  secret: process.env.SESSION_SECRET,
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    secure: process.env.NODE_ENV === "production",
+    httpOnly: true,
+    sameSite: "none",
+  },
+})
 );
 
 /* ---------------- PASSPORT ---------------- */
